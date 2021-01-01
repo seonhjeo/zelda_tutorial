@@ -4,9 +4,11 @@ using UnityEngine;
 
 public enum PlayerState
 {
+    idle,
     walk,
     attack,
-    interact
+    interact,
+    stagger
 }
 
 public class PlayerMovement : MonoBehaviour
@@ -37,9 +39,9 @@ public class PlayerMovement : MonoBehaviour
         change.x = Input.GetAxisRaw("Horizontal");
         change.y = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetButtonDown("Attack") && currentState != PlayerState.attack)
+        if (Input.GetButtonDown("Attack") && currentState != PlayerState.attack && currentState != PlayerState.stagger)
         { StartCoroutine(AttackCo()); }
-        else if (currentState == PlayerState.walk)
+        else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
         { UpdateAnimationAndMove(); }
     }
 
@@ -70,5 +72,29 @@ public class PlayerMovement : MonoBehaviour
     {
         change.Normalize();
         myRigidbody.MovePosition(transform.position + change * playerSpeed * Time.deltaTime);
+    }
+
+    public void Knock(float knockTime)
+    {
+        StartCoroutine(KnockCo(knockTime));
+    }
+
+    private IEnumerator KnockCo(float knockTime)
+    {
+        float knockt = 0;
+        Vector2 vel;
+        if (myRigidbody != null)
+        {
+            vel = myRigidbody.velocity;
+            while (knockt < knockTime)
+            {
+                myRigidbody.velocity = Vector2.Lerp(vel, Vector2.zero, (knockt / knockTime));
+                knockt += Time.deltaTime;
+                yield return null;
+            }
+            myRigidbody.velocity = Vector2.zero;
+            currentState = PlayerState.idle;
+            myRigidbody.velocity = Vector2.zero;
+        }
     }
 }
