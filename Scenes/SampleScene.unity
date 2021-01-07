@@ -341,8 +341,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee6906f8bb0f6d45a54b3da43fc1521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 2
+  thrust: 3
   knockTime: 0.5
+  damage: 1
 --- !u!1 &398904657
 GameObject:
   m_ObjectHideFlags: 0
@@ -4261,8 +4262,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee6906f8bb0f6d45a54b3da43fc1521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 2
+  thrust: 3
   knockTime: 0.5
+  damage: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -15950,8 +15952,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee6906f8bb0f6d45a54b3da43fc1521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 2
+  thrust: 3
   knockTime: 0.5
+  damage: 1
 --- !u!1 &1166466663
 GameObject:
   m_ObjectHideFlags: 0
@@ -19136,6 +19139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
+  maxHealth: {fileID: 11400000, guid: efb01d547cda48d4392328b5eba4df89, type: 2}
   health: 2
   enemyName: Log
   baseAttack: 1
@@ -19185,6 +19189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 2
   knockTime: 0.2
+  damage: 0
 --- !u!1 &1418609366
 GameObject:
   m_ObjectHideFlags: 0
@@ -19564,8 +19569,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee6906f8bb0f6d45a54b3da43fc1521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 2
+  thrust: 3
   knockTime: 0.5
+  damage: 1
 --- !u!1 &1783016842
 GameObject:
   m_ObjectHideFlags: 0
