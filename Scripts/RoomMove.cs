@@ -27,6 +27,7 @@ public class RoomMove : MonoBehaviour
         
     }
 
+    // 방에 진입시 해당 방에 맞춰 카메라 이동범위제한을 변경
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -42,6 +43,7 @@ public class RoomMove : MonoBehaviour
         }
     }
 
+    // 방에 진입시 해당 방의 이름을 UI로 출력해주는 함수
     private IEnumerator placeNameCo()
     {
         text.SetActive(true);

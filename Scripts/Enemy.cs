@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Enemy의 state
 public enum EnemyState
 {
     idle,
@@ -24,6 +25,7 @@ public class Enemy : MonoBehaviour
         health = maxHealth.initialValue;
     }
 
+    // 자기 자신이 데미지를 입는 함수
     private void TakeDamage(float damage)
     {
         health -= damage;
@@ -33,12 +35,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    // 자기 자신이 넉백당하는 것을 호출하는 함수
     public void Knock(Rigidbody2D myRigidbody, float knockTime, float damage)
     {
         StartCoroutine(KnockCo(myRigidbody, knockTime));
         TakeDamage(damage);
     }
 
+    // 자기 자신이 넉백당하는 코루틴
     private IEnumerator KnockCo(Rigidbody2D myRigidbody, float knockTime)
     {
         float knockt = 0;

@@ -16,7 +16,7 @@ public class CameraMovement : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+    // 카메라 이동 함수
     void LateUpdate()
     {
         if (transform.position != target.position)

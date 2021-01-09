@@ -8,6 +8,7 @@ public class Knockback : MonoBehaviour
     public float knockTime;
     public float damage;
 
+    // 트리거에 엔터시 넉백
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("breakable") && this.gameObject.CompareTag("Player"))
@@ -31,8 +32,11 @@ public class Knockback : MonoBehaviour
                 }
                 if (other.gameObject.CompareTag("Player"))
                 {
-                    hit.GetComponent<PlayerMovement>().currentState = PlayerState.stagger;
-                    other.GetComponent<PlayerMovement>().Knock(knockTime);
+                    if (other.GetComponent<PlayerMovement>().currentState != PlayerState.stagger)
+                    {
+                        hit.GetComponent<PlayerMovement>().currentState = PlayerState.stagger;
+                        other.GetComponent<PlayerMovement>().Knock(knockTime, damage);
+                    }                  
                 }               
             }
         }

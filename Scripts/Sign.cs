@@ -16,7 +16,7 @@ public class Sign : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+    // 특정 발판 위에 올라간 채로 상호작용을 하면 메시지를 출력해주는 함수
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && playerInRange)

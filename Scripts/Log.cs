@@ -31,6 +31,7 @@ public class Log : Enemy
             myRigidbody.velocity = Vector2.zero;
     }
 
+    // 플레이어와의 거리를 파악해 거리에 대한 상호작용을 하는 함수
     private void CheckDistance()
     {
         if (Vector3.Distance(target.position, transform.position) <= chaseRadius &&
@@ -57,6 +58,7 @@ public class Log : Enemy
         myAnimator.SetFloat("moveY", setVector.y);
     }
 
+    // 움직임에 맞춰 에니메이션 내 변수값을 변경하는 함수
     private void ChangeAnim(Vector2 direction)
     {
         if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
@@ -75,6 +77,7 @@ public class Log : Enemy
         }
     }
 
+    // 스테이트 변경 함수
     private void ChangeState(EnemyState newState)
     {
         if (currentState != newState)

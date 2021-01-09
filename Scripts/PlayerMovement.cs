@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 플레이어의 상태
 public enum PlayerState
 {
     idle,
@@ -20,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
     private Animator    animator;
 
     private Vector3     change;
+
+    public FloatValue currentHealth;
+    public Signal playerHealthSignal;
 
 
     // Start is called before the first frame update
@@ -45,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         { UpdateAnimationAndMove(); }
     }
 
+    // 공격 코루틴
     private IEnumerator AttackCo()
     {
         animator.SetBool("attacking", true);
@@ -55,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
         currentState = PlayerState.walk;
     }
 
+    // 움직임에 따른 애니메이션 변수 변경
     void UpdateAnimationAndMove()
     {
         if (change != Vector3.zero)
@@ -68,17 +74,30 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("moving", false);
     }
 
+    // 입력에 따라서 캐릭터를 움직임
     void MoveCharacter()
     {
         change.Normalize();
         myRigidbody.MovePosition(transform.position + change * playerSpeed * Time.deltaTime);
     }
 
-    public void Knock(float knockTime)
+    // 캐릭터의 넉백을 호출하는 함수
+    public void Knock(float knockTime, float damage)
     {
-        StartCoroutine(KnockCo(knockTime));
+        currentHealth.runtimeValue -= damage;
+        playerHealthSignal.Raise();
+        if (currentHealth.runtimeValue > 0)
+        {   
+            StartCoroutine(KnockCo(knockTime));
+        }
+        else
+        {
+            this.gameObject.SetActive(false);
+        }
+        
     }
 
+    // 캐릭터 넉백 코루틴
     private IEnumerator KnockCo(float knockTime)
     {
         float knockt = 0;

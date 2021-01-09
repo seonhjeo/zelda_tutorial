@@ -19,12 +19,14 @@ public class Pot : MonoBehaviour
         
     }
 
+    // 자기 자신을 부수는 것을 호출하는 함수
     public void Smash()
     {
         anim.SetBool("smashed", true);
         StartCoroutine(breakco());
     }
 
+    // 자기 자신을 부수는 코루틴
     IEnumerator breakco()
     {
         yield return new WaitForSeconds(0.25f);
